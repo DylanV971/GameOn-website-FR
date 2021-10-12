@@ -54,10 +54,10 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+            <form name="reserve" action="index.html" method="get" onsubmit="validate();">
               <div class="formData">
                 <label for="firstname">Prénom</label><br>
-                <input class="text-control" type="text" id="firstname" name="firstname" minlength="2" /><br>
+                <input class="text-control" type="text" id="firstname" name="firstname"  minlength="2" /><br>
               </div>
               <div class="formData">
                 <label for="lastname">Nom</label><br>
@@ -69,11 +69,11 @@
               </div> 
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate" required/><br>
               </div>
               <div class="formData">
-                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <label for="tournaments">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <input type="number" class="text-control" id="tournaments" name="tournaments" min="0" max="99">
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div class="formData">
@@ -100,18 +100,17 @@
                 <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland" />
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
-                  Portland</label>
+                  Portland</label><br>
               </div>
-
               <div class="formData">
-                <input class="checkbox-input" type="checkbox" id="conditions" checked />
-                <label class="checkbox2-label" for="conditions" required>
+                <input class="checkbox-input" type="checkbox" id="conditionsofuse" checked  required />
+                <label class="checkbox2-label" for="conditionsofuse">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <input class="checkbox-input" type="checkbox" id="newsletter" />
-                <label class="checkbox2-label" for="newsletter">
+                <input class="checkbox-input" type="checkbox" id="nextevent" />
+                <label class="checkbox2-label" for="nextevent">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu des prochains évènements.
                 </label>
