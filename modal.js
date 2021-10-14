@@ -134,7 +134,7 @@ function verification() {
 
   //verification of the tournament participation field
 
-  if(tournaments >= 0 && tournaments <= 99) {
+  if(tournaments && tournaments >=0 && tournaments <=99) {
     errorMessageCompetition.textContent = "";
     // console.log("Une valeur a bien été saisie");
   } else {
@@ -160,11 +160,13 @@ function verification() {
     errorMessagesConditionsOfUse.textContent = "Veuillez cocher la case des conditions d'utilisation";
     // console.log("Veuillez cocher la case des conditions d'utilisation");
   }
+  closeButton();
+  console.log("Test")
+  confirmationMessage();
 }  
 
 // successful submission confirmation message for the user
 
-confirmationMessage();
 
 function confirmationMessage() {
   const messageContainer = document.createElement("div");
