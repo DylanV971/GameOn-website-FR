@@ -169,7 +169,20 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
-.content {
+/*  modal 2*/
+
+.message-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.content, .message-content {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -186,6 +199,20 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+.message-body {
+  padding: 0 8%;
+  margin: 300px auto;
+}
+
+/* Message  */
+
+.message {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  padding: initial;
 }
 
 label {
@@ -303,7 +330,9 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close {
+
+/* closing button */
+.close, .message-close {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -313,8 +342,11 @@ input[data-error]::after {
   cursor: pointer;
   transform: scale(0.7);
 }
+
 .close:before,
-.close:after {
+.close:after, 
+.message-close:before,
+.message-close:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -322,14 +354,20 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+
+.close:before, .message-close:before {
   transform: rotate(45deg);
 }
-.close:after {
+
+.close:after, .message-close:after {
   transform: rotate(-45deg);
 }
+
+/* registration button, signup, close */
+
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close2 {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -340,6 +378,14 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+.btn-close2 {
+  position: absolute;
+  left: 138px;
+  bottom: 0px;
+  margin-bottom: 17px;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
