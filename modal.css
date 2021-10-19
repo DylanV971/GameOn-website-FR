@@ -3,6 +3,8 @@
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,13 +35,25 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.header-logo {
-    float: left;
-}
-.main-navbar {
+
+/* @media screen and (max-width: 800px) {
+  
+} */
+
+/* .header-logo {
+    float: none;
+} */
+
+
+/* .main-navbar {
     float: right;
-}
+} */
+
 .topnav a {
   float: left;
   display: block;
@@ -48,7 +62,7 @@ img {
   padding: 12px 12px;
   margin: 5px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   font-family: Roboto, sans-serif;
 }
 
@@ -67,42 +81,6 @@ img {
 .topnav .icon {
   display: none;
 }
-
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {
-    position: relative;
-  }
-
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -172,20 +150,7 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
-/*  modal 2*/
-
-.message-container {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
-.content, .message-content {
+.content {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -205,7 +170,47 @@ main {
   margin: 15px auto;
 }
 
-.message-body {
+
+/*  modal 2*/
+
+.confirmation-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.confirmation-body {
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
+
+.confirmation-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+
+
+.confirmation-message-body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,22 +218,58 @@ main {
   margin: 281px auto;
 }
 
+/* 
+.confirmation-close:before,
+.confirmation-close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+} */
+/* 
+.confirmation-close:before {
+  transform: rotate(45deg);
+}
+
+.confirmation-close:after {
+  transform: rotate(-45deg);
+} */
+
+
 /* Message  */
 
-.message {
+.confirmation-message-content {
   text-align: center;
   font-size: 36px;
   font-weight: 400;
   padding: initial;
 }
 
+.closing-button {
+  background: #fe142f;
+  display: block;
+  margin: -90px auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  margin-bottom: 17px;
+}
+
+/* Form */
+
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
 }
+
 input {
   padding: 8px;
   border: 0.8px solid #ccc;
@@ -246,7 +287,7 @@ input {
 /* input error message  */
 .error-message {
   color: #FF4E60;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .formData[data-error]::after {
@@ -339,7 +380,8 @@ input[data-error]::after {
 }
 
 /* closing button */
-.close, .message-close {
+
+.close {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -352,8 +394,8 @@ input[data-error]::after {
 
 .close:before,
 .close:after, 
-.message-close:before,
-.message-close:after {
+.confirmation-close:before,
+.confirmation-close:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -362,19 +404,19 @@ input[data-error]::after {
   background-color: #fff;
 }
 
-.close:before, .message-close:before {
+.close:before, .confirmation-close:before {
   transform: rotate(45deg);
 }
 
-.close:after, .message-close:after {
+.close:after, .confirmation-close:after {
   transform: rotate(-45deg);
 }
 
 /* registration button, signup, close */
 
 .btn-submit,
-.btn-signup,
-.btn-close2 {
+.btn-signup
+{
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -386,11 +428,6 @@ input[data-error]::after {
   border: 0;
 }
 
-.btn-close2 {
-  position: absolute;
-  bottom: 0px;
-  margin-bottom: 17px;
-}
 
 /* custom select styles */
 .custom-select {
@@ -541,37 +578,129 @@ footer {
 
 @media only screen and (max-width: 320px) {
   /* Modal 2 */
-  .message-container {
+  .confirmation-container {
     top: 40px;
   }
 
-  .message {
+  .confirmation-message-content {
     font-size: 23px;
+  }
+  .checkbox-label, .checkbox2-label {
+    font-size: 10px;
   }
 }
 
+
+@media screen and (min-width: 261px) and (max-width: 800px) {
+  /* icon hamburger */
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  
+  /* item list */
+  .topnav.responsive {
+    position: relative;
+  }
+  
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 435px) { 
+  .main-navbar {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .topnav a.icon {
+    position: relative;
+    bottom: 57px;
+    height: 43px;
+  }
+  /* .topnav.responsive a {
+    text-align: center  ;
+  } */
+}
 
 @media only screen and (max-width: 449px) {
   /* Modal 2 */
-  .message-container {
+  /* .confirmation-container {
     top: 40px;
-  }
+  } */
 
-  .message {
+  .confirmation-message-content {
     font-size: 22px;
   }
 
-  .btn-close2 {
+  .closing-button {
     margin-bottom: 48px;
   }
 }
+/* 
+@media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+}  */
 
+@media only screen and (min-width: 437px) and (max-width: 800px) { 
+  .topnav.responsive {
+    align-items: normal;
+  }
+
+  .topnav.responsive a {
+    height: 43px;
+  }
+
+  .main-navbar {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .topnav a.icon {
+    position: relative;
+    bottom: 60px;
+  }
+
+  .hero-headline {
+    font-size: 2.8rem !important;
+  }
+}
 
 @media screen and (max-width: 800px) {
+  .fa-bars {
+    color: #FF001B;
+  }
+  .topnav a:hover {
+    background-color: #FF001B;
+    color: #fff;
+  }
+
+  .fa-bars:hover {
+    color: #fff;
+  }
+
+  .confirmation-container {
+    top: 40px;
+  }
+  
   .header-logo img {
     width: 190px;
   }
-
+  
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -592,13 +721,12 @@ footer {
     font-size: 2rem;
     font-weight: 500;
     white-space: normal;
-    text-align: center;
-    margin-top: 10px;
+    text-align: left;
   }
   .hero-text {
     width: unset;
     font-size: 1rem;
-    text-align: center;
+    text-align: left;
     margin-top: 40px;
   }
   .hero-img img {
@@ -615,6 +743,17 @@ footer {
     text-align: center;
   }
 }
+
+@media screen and (min-width: 801px) and (max-width: 1044px) {
+  .hero-headline {
+    font-size: 4rem;
+  }
+
+  .topnav {
+    justify-content: center;
+  }
+}
+
 
 @keyframes modalopen {
   from {

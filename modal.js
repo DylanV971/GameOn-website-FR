@@ -12,8 +12,10 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const sendButtonForm = document.querySelector(".btn-submit");
-const modalBody = document.querySelector(".modal-body");
-const closeTheModal = document.querySelector(".close"); 
+const closingButtonForm = document.querySelector(".close"); 
+const confirmationMessage = document.querySelector(".confirmation-container");
+const firstButtonToCloseTheConfirmationMessage = document.querySelector(".confirmation-close");
+const secondButtonToCloseTheConfirmationMessage = document.querySelector(".closing-button");
 
 //creation of the span element
 
@@ -160,24 +162,12 @@ function verification() {
     errorMessagesConditionsOfUse.textContent = "Veuillez cocher la case des conditions d'utilisation";
     // console.log("Veuillez cocher la case des conditions d'utilisation");
   }
-  closeButton();
-  console.log("Test")
-  confirmationMessage();
 }  
+ 
+// confirmationMessage.style.display = "block";
 
-// successful submission confirmation message for the user
+//verification of the form when clicking on the submit button
 
-
-function confirmationMessage() {
-  const messageContainer = document.createElement("div");
-  messageContainer.classList.add("message-container");
-  messageContainer.innerHTML = 
-  "<div class='message-content'><span class='message-close'></span><div class='message-body'><p class='message'>Vos coordonnées ont été transmises avec succès.<br> Et votre place a bien été réserver</p><button class='btn-close2'>Fermer</button></div></div>";
-  messageContainer.style.display = "flex";
-  document.querySelector("main").appendChild(messageContainer);
-}
-
-//addeventlistener method used on the submit button
 sendButtonForm.addEventListener("click",verification);
 
 // launch modal event
@@ -188,29 +178,24 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//close the modal
-closeTheModal.addEventListener("click", closeTheModalForm); 
+//close the form modal
 
-function closeTheModalForm() {
+closingButtonForm.addEventListener("click", closeTheFormModal); 
+
+function closeTheFormModal() {
   modalbg.style.display="none";
 }
 
-// closing button modal 2
+// closing button of the confirmation message
 
-const btnClose = document.querySelector(".message-close");
-const btnClose2 = document.querySelector(".btn-close2");
+firstButtonToCloseTheConfirmationMessage.addEventListener("click", firstClosingButton);
 
-// modal two
-const modalTwo = document.querySelector(".message-container");
-
-btnClose.addEventListener("click", closeButton);
-
-function closeButton() {
-  modalTwo.style.display = "none";
+function firstClosingButton() {
+  confirmationMessage.style.display = "none";
 }
 
-btnClose2.addEventListener("click",closeButton2);
+secondButtonToCloseTheConfirmationMessage.addEventListener("click", secondClosingButton);
 
-function closeButton2() {
-  modalTwo.style.display = "none";
+function secondClosingButton() {
+  confirmationMessage.style.display = "none";
 }
