@@ -16,6 +16,7 @@ const closingButtonForm = document.querySelector(".close");
 const confirmationMessage = document.querySelector(".confirmation-container");
 const firstButtonToCloseTheConfirmationMessage = document.querySelector(".confirmation-close");
 const secondButtonToCloseTheConfirmationMessage = document.querySelector(".closing-button");
+let ResetTheForm;
 
 //creation of the span element
 
@@ -49,7 +50,8 @@ const errorMessagesConditionsOfUse = document.createElement("span");
 errorMessagesConditionsOfUse.classList.add("error-message");
 formData[6].appendChild(errorMessagesConditionsOfUse);
 
-function verification() {
+function verification(e) {
+  e.preventDefault();
   const firstName = document.querySelector("#firstname").value.length;
   const lastName = document.querySelector("#lastname").value.length;
   const email = document.querySelector("#email").value;
@@ -67,6 +69,7 @@ function verification() {
   const locationPortland = document.querySelector("#location6").checked;
   const conditionsOfUse = document.querySelector("#conditionsofuse").checked;
   const nextEvent = document.querySelector("#nextevent").checked;
+  let hasError = false;
 
   // verification of values in the console
   
@@ -77,7 +80,7 @@ function verification() {
   // console.log(date);
   // console.log(month);
   // console.log(year);
-  // console.log(birthDate);
+  // // console.log(birthDate);
   // console.log(tournaments);
 
   // console.log(locationNewYork);
@@ -95,9 +98,13 @@ function verification() {
   if(firstName < 2 || firstName == "") {
     errorMessageFirstNameField.textContent = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
     // console.log("Veuillez entrer 2 caractères ou plus pour le champ du prénom");
+    hasError = true;
+    // console.log(hasError);
   } else if (firstName >= 13) {
     errorMessageFirstNameField.textContent = "Veuillez entrer moins de caractères pour le champ du prénom";
     // console.log("Veuillez entrer moins de caractères pour le champ du prénom");
+    hasError = true;
+    // console.log(hasError);
   } else {
     errorMessageFirstNameField.textContent = "";
   }
@@ -107,9 +114,13 @@ function verification() {
   if(lastName < 2 || lastName == "") {
     errorMessageLastNameField.textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom";  //error message first name field
     // console.log("Veuillez entrer 2 caractères ou plus pour le champ du nom"); 
+    hasError = true;
+    // console.log(hasError);
   } else if (lastName >= 13) {
     errorMessageLastNameField.textContent = "Veuillez entrer moins de caractères pour le champ du nom";
     // console.log("Veuillez entrer moins de caractères pour le champ du prénom");
+    hasError = true;
+    // console.log(hasError);
   } else {
     errorMessageLastNameField.textContent = "";
   }
@@ -119,6 +130,8 @@ function verification() {
   if(emailPattern.test(email) == false) {
     errorMessageEmail.textContent = "Veuillez saisir une adresse email valide Exp(lorem@gmail.com)";
     // console.log("Veuillez saisir une adresse email valide Exp(lorem@gmail.com)");
+    hasError = true;
+    // console.log(hasError);
   } else {
     errorMessageEmail.textContent = "";
     // console.log("Votre email est valide");
@@ -130,8 +143,10 @@ function verification() {
     errorMessageBirthdateField.textContent = "";
     // console.log("Date de naissance saisie");
   } else {
-    errorMessageBirthdateField.textContent = "veuillez entrer votre date de naissance"
+    errorMessageBirthdateField.textContent = "veuillez entrer votre date de naissance";
     // console.log("veuillez entrer votre date de naissance");
+    hasError = true;
+    // console.log(hasError);
   }
 
   //verification of the tournament participation field
@@ -141,6 +156,8 @@ function verification() {
     // console.log("Une valeur a bien été saisie");
   } else {
     errorMessageCompetition.textContent = "Veuillez entrer un nombre entre 0 et 99";
+    hasError = true;
+    // console.log(hasError);
   }
 
   //verification of the location buttons
@@ -149,8 +166,10 @@ function verification() {
     buttonErrorMessage.textContent = "";
     // console.log("La ville a bien été choisie");
   }  else {
-    // console.log("Veuillez sélectionner une ville");
     buttonErrorMessage.textContent = "Veuillez sélectionner une ville";
+    // console.log("Veuillez sélectionner une ville");
+    hasError = true;
+    // console.log(hasError);
   }
 
   // verification of the conditions of use
@@ -161,10 +180,22 @@ function verification() {
   } else {
     errorMessagesConditionsOfUse.textContent = "Veuillez cocher la case des conditions d'utilisation";
     // console.log("Veuillez cocher la case des conditions d'utilisation");
+    hasError = true;
+    // console.log(hasError);
+  }
+
+  // checks if the errors in the fields are true or false
+
+  if(hasError == true) {
+    confirmationMessage.style.display = "none";
+    // console.log("Une ou plusieurs erreurs ont été trouvée dans le formulaire");
+    
+  } else {
+    modalbg.style.display="none";
+    confirmationMessage.style.display = "block";
+    // console.log("Aucune erreur trouvée");
   }
 }  
- 
-// confirmationMessage.style.display = "block";
 
 //verification of the form when clicking on the submit button
 
@@ -192,10 +223,13 @@ firstButtonToCloseTheConfirmationMessage.addEventListener("click", firstClosingB
 
 function firstClosingButton() {
   confirmationMessage.style.display = "none";
+   ResetTheForm = document.getElementById("resetform").reset();
+
 }
 
 secondButtonToCloseTheConfirmationMessage.addEventListener("click", secondClosingButton);
 
 function secondClosingButton() {
   confirmationMessage.style.display = "none";
+   ResetTheForm = document.getElementById("resetform").reset();
 }
